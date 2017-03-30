@@ -1,0 +1,16 @@
+console.log('start');
+var http = require('http');
+var url = require('url');
+var url = require('url');
+var url_parts = url.parse(request.url, true);
+var query = url_parts.query;var url_parts = url.parse(request.url, true);
+var query = url_parts.query;
+
+
+http.createServer( function(request, response) {
+	response.writeHead( 200, {'Content-Type':'text/plain'} );
+	response.write('Welcome'. query);
+	response.end();
+}).listen(8083) ;
+console.log('http up');
+

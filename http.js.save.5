@@ -1,0 +1,29 @@
+console.log('start');
+var http = require('http');
+var url = require('url');
+
+http.createServer( function(request, response) {	
+	var queryData = url.parse(request.url, true).query;
+	console.log(queryData);	
+	response.writeHead( 200, {'Content-Type':'text/plain'} );
+	switch (queryData.q) {
+		case 'Ping':
+			response.write('OK');
+			break;
+		default:
+			response.write('Not applicable');
+	}
+	/*
+	if(queryData.q == 'Ping'){
+		response.write('OK');
+	}
+
+	if(queryData.q == 'Puzzle'){
+		response.write( str.search( \n ABCD\nA=---\nB<---\nC>---\nD-->-\n) );
+	}
+	*/
+
+	response.end();
+}).listen(8083) ;
+console.log('start end');
+

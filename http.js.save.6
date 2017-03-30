@@ -1,0 +1,35 @@
+\n ABCD\nA--->\nB-=--\nC-<--\nD->--\n\n ABCD\nA--->\nB-=--\nC-<--\nD->--\n\n ABCD\nA--->\nB-=--\nC-<--\nD->--\nconsole.log('start');
+var http = require('http');
+var url = require('url');
+
+http.createServer( function(request, response) {	
+	var queryData = url.parse(request.url, true).query;
+	console.log(queryData);	
+	response.writeHead( 200, {'Content-Type':'text/plain'} );
+	switch (queryData.q) {
+		case 'Ping':
+			response.write('OK');
+			break;
+                case 'Puzzle':
+			var patt = \n ABCD\nA--->\nB-=--\nC-<--\nD->--\n ;
+                        response.write(' patt.source  ');
+                        break;
+                case 'xxx':
+                        response.write('xxx');
+                        break;
+		default:
+			response.write('Not applicable');
+	}
+	/*
+	if(queryData.q == 'Ping'){
+		response.write('OK');
+	}
+	if(queryData.q == 'Puzzle'){
+		response.write('\n ABCD\nA=---\nB<---\nC>---\nD-->-\n ');
+	}
+	*/
+
+	response.end();
+}).listen(8083) ;
+console.log('start end');
+

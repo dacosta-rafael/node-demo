@@ -1,0 +1,18 @@
+console.log('start');
+var http = require('http');
+var url = require('url');
+
+http.createServer( function(request, response) {	
+	var queryData = url.parse(request.url, true).query;
+	console.log(queryData);	
+	response.writeHead( 200, {'Content-Type':'text/plain'} );
+	 if (queryData.q == 'Ping') {
+	response.end('OK');
+	} 
+
+			else {
+	//response.end("Hello World\n");
+	//}
+}).listen(8083) ;
+console.log('start end');
+
