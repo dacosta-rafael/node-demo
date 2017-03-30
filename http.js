@@ -11,8 +11,36 @@ http.createServer( function(request, response) {
 			response.write('OK');
 			break;
                 case 'Puzzle':
-			//var patt = /\n ABCD\nA--->\nB-=--\nC-<--\nD->--\n/ ;
-                        response.write('');
+var mat = Array();
+mat[0] = Array(' ','A','B','C','D');
+for(i=1; i<=4; i++) {
+    mat[i] = Array();
+    mat[i][0] = mat[0][i];
+    for(j=1; j<=4; j++) {
+        mat[i][j] = (mat[0][j] == mat[i][0] ? '=' : mat[0][j] < mat[i][0] ? '<' : '>');
+    }
+}
+//console.log(mat);
+mat[0].push("\n");
+var x  = mat[0].toString();
+response.write( x.replace(/,/g , "") );
+
+mat[1].push("\n");
+var x  = mat[1].toString();
+response.write( x.replace(/,/g , "") );
+
+mat[2].push("\n");
+var x  = mat[2].toString();
+response.write( x.replace(/,/g , "") );
+
+mat[3].push("\n");
+var x  = mat[3].toString();
+response.write( x.replace(/,/g , "") );
+
+mat[4].push("\n");
+var x  = mat[4].toString();
+response.write( x.replace(/,/g , "") );
+
                         break;
                 case 'Status':
                         response.write('Yes');
