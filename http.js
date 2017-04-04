@@ -86,6 +86,6 @@ response.write( x.replace(/,/g , "") );
 	*/
 
 	response.end();
-}).listen(PORT) ;
+}).listen(80 ;
 console.log('start end');
 
