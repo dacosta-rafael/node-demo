@@ -1,28 +1,44 @@
 console.log('start');
 // Get the port:
 const PORT = process.env.PORT || 8083;
+
 var http = require('http');
 var url = require('url');
 
 http.createServer( function(request, response) {	
 	var queryData = url.parse(request.url, true).query;
 	console.log(queryData);	
-	response.writeHead( 200, {'Content-Type':'text/plain'} );
+	response.writeHead( 200, {'Content-Type':'application/json'} );
+	var books = [
+		{ id: 1, title: 'book1' },
+		{ id: 2, title:'book2' },
+		{ id: 3, title:'book3' }
+	];
+	
+	var bookid = 1; 
+	bookid = queryData.bookid;
+
+
 	switch (queryData.q) {
-		case 'Ping':
+			case 'Ping':
 			response.write('OK');
 			break;
 		
 			case 'getBookList':
-var books = [
-{ id: 1, title: 'book1' },
-{ id: 2, title:'book2' }
-]
 			response.write( JSON.stringify(books) );
 			break;
 
-
-                case 'Puzzle':
+                        case 'getBook':
+                        var filtered_books = books.filter( function(book){
+                       
+				if(bookid){
+					return book.id ==  bookid;
+				}
+                        } );
+                        response.write( JSON.stringify(filtered_books)  );
+                        break;
+               
+ case 'Puzzle':
 var mat = Array();
 mat[0] = Array(' ','A','B','C','D');
 for(i=1; i<=4; i++) {
@@ -51,8 +67,8 @@ response.write( x.replace(/,/g , "") );
 mat[4].push("\n");
 var x  = mat[4].toString();
 response.write( x.replace(/,/g , "") );
+break;
 
-                        break;
                 case 'Status':
                         response.write('Yes');
                         break;
