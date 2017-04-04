@@ -86,6 +86,6 @@ response.write( x.replace(/,/g , "") );
 	*/
 
 	response.end();
-}).listen(80 ;
+}).listen(80) ;
 console.log('start end');
 
