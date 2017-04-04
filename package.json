@@ -8,6 +8,5 @@
  "main": "http.js",
   "scripts": {
     "start": "node http.js"
-  },
-
+  }
 }
