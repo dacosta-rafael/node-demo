@@ -12,6 +12,16 @@ http.createServer( function(request, response) {
 		case 'Ping':
 			response.write('OK');
 			break;
+		
+			case 'getBookList':
+var books = [
+{ id: 1, title: 'book1' },
+{ id: 2, title:'book2' }
+]
+			response.write( JSON.stringify(books) );
+			break;
+
+
                 case 'Puzzle':
 var mat = Array();
 mat[0] = Array(' ','A','B','C','D');
@@ -22,7 +32,6 @@ for(i=1; i<=4; i++) {
         mat[i][j] = (mat[0][j] == mat[i][0] ? '=' : mat[0][j] < mat[i][0] ? '<' : '>');
     }
 }
-//console.log(mat);
 mat[0].push("\n");
 var x  = mat[0].toString();
 response.write( x.replace(/,/g , "") );
