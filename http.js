@@ -1,4 +1,6 @@
 console.log('start');
+// Get the port:
+const PORT = process.env.PORT || 8083;
 var http = require('http');
 var url = require('url');
 
@@ -86,6 +88,6 @@ response.write( x.replace(/,/g , "") );
 	*/
 
 	response.end();
-}).listen(80) ;
+}).listen( PORT, () => console.log('Listening on', PORT) ) ;
 console.log('start end');
 
