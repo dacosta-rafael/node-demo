@@ -15,59 +15,28 @@ http.createServer( function(request, response) {
 		{ id: 3, title:'book3' }
 	];
 	
+	//default book set
 	var bookid = 1; 
 	bookid = queryData.bookid;
 
 
 	switch (queryData.q) {
-			case 'Ping':
-			response.write('OK');
-			break;
+		case 'Ping':
+		response.write('OK');
+		break;
 		
-			case 'getBookList':
+		case 'getBookList':
 			response.write( JSON.stringify(books) );
 			break;
-
-                        case 'getBook':
-                        var filtered_books = books.filter( function(book){
-                       
-				if(bookid){
-					return book.id ==  bookid;
-				}
-                        } );
+                case 'getBook':
+                var filtered_books = books.filter( function(book){
+                	if(bookid){
+				return book.id ==  bookid;
+			}
+                } );
                         response.write( JSON.stringify(filtered_books)  );
                         break;
                
- case 'Puzzle':
-var mat = Array();
-mat[0] = Array(' ','A','B','C','D');
-for(i=1; i<=4; i++) {
-    mat[i] = Array();
-    mat[i][0] = mat[0][i];
-    for(j=1; j<=4; j++) {
-        mat[i][j] = (mat[0][j] == mat[i][0] ? '=' : mat[0][j] < mat[i][0] ? '<' : '>');
-    }
-}
-mat[0].push("\n");
-var x  = mat[0].toString();
-response.write( x.replace(/,/g , "") );
-
-mat[1].push("\n");
-var x  = mat[1].toString();
-response.write( x.replace(/,/g , "") );
-
-mat[2].push("\n");
-var x  = mat[2].toString();
-response.write( x.replace(/,/g , "") );
-
-mat[3].push("\n");
-var x  = mat[3].toString();
-response.write( x.replace(/,/g , "") );
-
-mat[4].push("\n");
-var x  = mat[4].toString();
-response.write( x.replace(/,/g , "") );
-break;
 
                 case 'Status':
                         response.write('Yes');
@@ -103,16 +72,6 @@ break;
 		default:
 			response.write('Not applicable');
 	}
-	/*
-	if(queryData.q == 'Ping'){
-		response.write('OK');
-	}
-	if(queryData.q == 'Puzzle'){
-		response.write('\n ABCD\nA=---\nB<---\nC>---\nD-->-\n ');
-	}
-	*/
-
 	response.end();
 }).listen( PORT, () => console.log('Listening on', PORT) ) ;
 console.log('start end');
-
