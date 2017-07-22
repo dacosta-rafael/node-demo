@@ -9,16 +9,6 @@ http.createServer( function(request, response) {
 	var queryData = url.parse(request.url, true).query;
 	console.log(queryData);	
 	response.writeHead( 200, {'Content-Type':'application/json'} );
-
-
-    var cake_options = 
-        { 
-          flavors: [vanilla, chocolate],
-          icing: [butter cream, whip cream]
-        };
-
-
-
 	var books = [
 		{ id: 1, title: 'book1' },
 		{ id: 2, title:'book2' },
@@ -33,11 +23,7 @@ http.createServer( function(request, response) {
 			case 'Ping':
 			response.write('OK');
 			break;
-
-            case 'cakeOptions':
-            response.write( JSON.stringify(cake_options) ); 
-            break;
-		 
+		
 			case 'getBookList':
 			response.write( JSON.stringify(books) );
 			break;
