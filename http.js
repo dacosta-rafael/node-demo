@@ -9,6 +9,8 @@ http.createServer( function(request, response) {
 	var queryData = url.parse(request.url, true).query;
 	console.log(queryData);	
 	response.writeHead( 200, {'Content-Type':'application/json'} );
+    response.writeHead( 200, {'Access-Control-Allow-Origin':'*'} );
+
 	var books = [
 		{ id: 1, title: 'book1' },
 		{ id: 2, title:'book2' },
@@ -19,6 +21,8 @@ http.createServer( function(request, response) {
     var flavor = 'no flavor?';
     var icing = 'no icing?';
     //data points for main methods, reset to request
+
+    ///security make sure this is only valid types
 	bookid = queryData.bookid;
     flavor = queryData.flavor;
     icing = queryData.icing;
