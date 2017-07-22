@@ -9,11 +9,6 @@ http.createServer( function(request, response) {
 	var queryData = url.parse(request.url, true).query;
 	console.log(queryData);	
 	response.writeHead( 200, {'Content-Type':'application/json'} );
-	var books = [
-		{ id: 1, title: 'book1' },
-		{ id: 2, title:'book2' },
-		{ id: 3, title:'book3' }
-	];
 
 
     var cake_options = 
@@ -22,15 +17,22 @@ http.createServer( function(request, response) {
           icing: [butter cream, whip cream]
         };
 
+        if (queryData.cakeOptions){
+           response.write( JSON.stringify(cake_options) ); 
+        }
+
+
+
+	var books = [
+		{ id: 1, title: 'book1' },
+		{ id: 2, title:'book2' },
+		{ id: 3, title:'book3' }
+	];
 	
 	//default book set
 	var bookid = 1; 
 	bookid = queryData.bookid;
-///
 
-if (queryData.cakeOptions){
-   response.write( JSON.stringify(cake_options) ); 
-}
 
 	switch (queryData.q) {
 		case 'Ping':
@@ -80,7 +82,6 @@ if (queryData.cakeOptions){
                 case 'Email Address':
                         response.write('dacosta_rafael@hotmail.com');
                         break;
-
 
 		default:
 			response.write('Not applicable');
