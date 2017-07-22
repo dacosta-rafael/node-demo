@@ -16,37 +16,53 @@ http.createServer( function(request, response) {
 	];
 	//default book set
 	var bookid = 1; 
+    var flavor = 'no flavor?';
+    var icing = 'no icing?';
+    //data points for main methods, reset to request
 	bookid = queryData.bookid;
-
-
-	switch (queryData.q) {
-case 'cakeOptions':
-var someObject = {
-    flavors: "vanilla,chocolate",
-	icing: "dairy cream, butter cream"
-	 
-};
+    flavor = queryData.flavor;
+    icing = queryData.icing;
 
 
 
-response.write( JSON.stringify(someObject) );
-break;
-			case 'Ping':
+
+    switch (queryData.q) {
+            case 'cakeOptions':
+            var someObject = {
+                flavors: "vanilla,chocolate",
+            	icing: "dairy cream, butter cream"
+            	 
+            };
+            response.write( JSON.stringify(someObject) );
+            break;
+
+            case 'cakeMaker':
+            if( flavor && icing ){
+            var cake = { flavor: flavor, 
+                        icing: icing }
+            response.write( JSON.stringify(cake)  );
+            }else{
+            response.write( 'no'  );
+            }
+            break;
+			
+            case 'Ping':
 			response.write('OK');
 			break;
 		
 			case 'getBookList':
-
 			response.write( JSON.stringify(books) );
 			break;
-                case 'getBook':
+
+
+            case 'getBook':
                 var filtered_books = books.filter( function(book){
-                	if(bookid){
-				return book.id ==  bookid;
-			}
+                    if(bookid){
+        				return book.id ==  bookid;
+        			}
                 } );
-                        response.write( JSON.stringify(filtered_books)  );
-                        break;
+            response.write( JSON.stringify(filtered_books)  );
+            break;
                
 
                 case 'Status':
