@@ -14,14 +14,23 @@ http.createServer( function(request, response) {
 		{ id: 2, title:'book2' },
 		{ id: 3, title:'book3' }
 	];
-	
 	//default book set
 	var bookid = 1; 
 	bookid = queryData.bookid;
 
 
 	switch (queryData.q) {
+case 'cakeOptions':
+var someObject = {
+    flavors: "vanilla,chocolate",
+	icing: "dairy cream, butter cream"
+	 
+};
 
+
+
+response.write( JSON.stringify(someObject) );
+break;
 			case 'Ping':
 			response.write('OK');
 			break;
