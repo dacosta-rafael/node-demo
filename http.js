@@ -17,10 +17,6 @@ http.createServer( function(request, response) {
           icing: [butter cream, whip cream]
         };
 
-        if (queryData.cakeOptions){
-           response.write( JSON.stringify(cake_options) ); 
-        }
-
 
 
 	var books = [
@@ -37,7 +33,11 @@ http.createServer( function(request, response) {
 			case 'Ping':
 			response.write('OK');
 			break;
-		
+
+            case 'cakeOptions':
+            response.write( JSON.stringify(cake_options) ); 
+            break;
+		 
 			case 'getBookList':
 			response.write( JSON.stringify(books) );
 			break;
