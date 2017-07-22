@@ -14,11 +14,23 @@ http.createServer( function(request, response) {
 		{ id: 2, title:'book2' },
 		{ id: 3, title:'book3' }
 	];
+
+
+    var cake_options = 
+        { 
+          flavors: [vanilla, chocolate],
+          icing: [butter cream, whip cream]
+        };
+
 	
 	//default book set
 	var bookid = 1; 
 	bookid = queryData.bookid;
+///
 
+if (queryData.cakeOptions){
+   response.write( JSON.stringify(cake_options) ); 
+}
 
 	switch (queryData.q) {
 		case 'Ping':
@@ -68,6 +80,7 @@ http.createServer( function(request, response) {
                 case 'Email Address':
                         response.write('dacosta_rafael@hotmail.com');
                         break;
+
 
 		default:
 			response.write('Not applicable');
